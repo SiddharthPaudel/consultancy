@@ -6,7 +6,7 @@ import exploreImg from "../../images/osakahero.jpg";
 
 // 1. Updated action links with correct paths matching your App.jsx
 const actionLinks = [
-  { label: "Japan Language", icon: <Map size={18} />, path: "/study-work/language-schools" },
+  { label: "Japan Language Classes", icon: <Map size={18} />, path: "/services/language-schools" },
   { label: "Documentation Support", icon: <ShieldCheck size={18} />, path: "/services/documentation" },
   { label: "SSW Visa Assistance", icon: <FileText size={18} />, path: "/study-work/ssw-vis" },
   { label: "Universities", icon: <School size={18} />, path: "/study-work/universities" },

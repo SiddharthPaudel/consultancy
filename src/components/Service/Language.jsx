@@ -125,7 +125,7 @@ export default function LanguageSchoolPage() {
         </div>
 
         {/* SECTION 5: REGIONAL FOOTPRINT */}
-        <div className="text-center mb-10 px-6 py-16 bg-slate-50 rounded-[5rem]">
+        {/* <div className="text-center mb-10 px-6 py-16 bg-slate-50 rounded-[5rem]">
            <MapPin className="mx-auto text-blue-800 mb-6" size={32} />
            <h3 className="text-2xl font-black uppercase text-slate-900 mb-10">Study Locations</h3>
            <div className="flex flex-wrap justify-center gap-4">
@@ -135,7 +135,7 @@ export default function LanguageSchoolPage() {
                 </span>
               ))}
            </div>
-        </div>
+        </div> */}
       </div>
     </div>
   );
