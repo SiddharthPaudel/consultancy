@@ -40,7 +40,7 @@ export default function Header() {
       dropdown: [
         { name: "Levels: N3, N4, N5", to: "/test-preparation/jlpt" },
         { name: "JLPT / NAT", to: "/test-preparation/nat" },
-        { name: "JLCT / J-CERT", to: "/test-preparation/jlcert" },
+        { name: "JLCT & J-CERT", to: "/test-preparation/jlcert" },
       ],
     },
     {
