@@ -46,7 +46,7 @@ export default function ExploreActionsSection() {
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-6 uppercase">
             Explore Your <br/>
-            <span className="text-blue-600">Japan</span> Life
+            <span className="text-blue-800">Japan</span> Life
           </h2>
         </motion.div>
 

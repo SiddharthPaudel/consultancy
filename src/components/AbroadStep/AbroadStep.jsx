@@ -38,7 +38,7 @@ const AbroadStep = () => {
               </span>
             </div>
             <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] mb-8 uppercase  tracking-tighter">
-              Why Choose <br /> <span className="text-blue-700">Namo Buddha?</span>
+              Why Choose <br /> <span className="text-blue-800">Namo Buddha?</span>
             </h3>
             <p className="text-slate-500 text-sm font-medium leading-relaxed max-w-sm mb-8">
               We don't just process applications; we build careers. Our specialized focus on Japan ensures you get the most accurate guidance available.
@@ -72,7 +72,7 @@ const AbroadStep = () => {
             The Roadmap
           </h2>
           <h3 className="text-4xl md:text-5xl font-black text-slate-900 tracking-tight uppercase ">
-            Your Seamless <span className="text-blue-700">Journey</span>
+            Your Seamless <span className="text-blue-800">Journey</span>
           </h3>
           <div className="w-16 h-1.5 bg-blue-800 mx-auto mt-8 rounded-full" />
         </div>

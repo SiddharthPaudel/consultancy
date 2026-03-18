@@ -10,27 +10,31 @@ import languageSchoolImg from "../../images/classroom.jpg";
 
 export default function LanguageSchoolPage() {
   return (
-    <div className="pt-24 pb-20 font-poppins bg-white">
-      {/* SECTION 1: HERO */}
+    /* Changed pt-24 to pt-0 to remove the gap at the top */
+    <div className="pt-0 pb-20 font-poppins bg-white">
+      
+      {/* SECTION 1: HERO - Now starts exactly at the top */}
       <div className="w-full mb-20">
-        <div className="relative w-full h-[40vh] md:h-[60vh] overflow-hidden">
+        <div className="relative w-full h-[50vh] md:h-[70vh] lg:h-[80vh] overflow-hidden">
           <img 
             src={languageSchoolImg} 
             alt="Japanese Language School" 
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/90 via-slate-900/40 to-transparent"></div>
+          {/* Enhanced gradient for better text visibility */}
+          <div className="absolute inset-0 bg-gradient-to-r from-slate-900/95 via-slate-900/50 to-transparent"></div>
           
           <div className="absolute inset-0 flex flex-col justify-center px-8 md:px-24">
-             <div className="flex items-center gap-3 mb-4">
+             <div className="flex items-center gap-3 mb-6">
                 <div className="h-[2px] w-12 bg-blue-400"></div>
-                <span className="text-blue-400 text-xs font-bold tracking-[0.4em] uppercase">Language Excellence</span>
+                <span className="text-blue-400 text-[10px] md:text-xs font-black tracking-[0.4em] uppercase">Language Excellence</span>
              </div>
-             <h1 className="text-4xl md:text-5xl font-black text-white uppercase leading-none">
-                Japanese <span className="text-blue-400">Language Classes</span>
+             <h1 className="text-4xl md:text-6xl lg:text-5xl font-black text-white uppercase leading-[0.9]">
+                Japanese <br/> 
+                <span className="text-blue-400">Language Classes</span>
              </h1>
-             <p className="text-slate-300 max-w-xl mt-8 text-[11px] font-bold uppercase leading-relaxed hidden md:block">
-                Learning Japanese is essential for studying and working in Japan. We provide training designed to help you build strong communication skills.
+             <p className="text-slate-300 max-w-xl mt-10 text-[11px] font-bold uppercase leading-relaxed hidden md:block tracking-widest opacity-80">
+                Learning Japanese is the vital bridge to your career. We provide expert training in Tandi to help you master communication before you even land in Japan.
              </p>
           </div>
         </div>
@@ -50,7 +54,7 @@ export default function LanguageSchoolPage() {
               </p>
             </div>
 
-            {/* NEW: FOUR PILLARS OF TRAINING */}
+            {/* FOUR PILLARS OF TRAINING */}
             <div className="grid grid-cols-2 sm:grid-cols-4 gap-4">
                {[
                  { icon: <Mic2 size={20}/>, label: "Speaking" },
@@ -58,8 +62,8 @@ export default function LanguageSchoolPage() {
                  { icon: <BookOpen size={20}/>, label: "Reading" },
                  { icon: <PenTool size={20}/>, label: "Writing" }
                ].map((skill, i) => (
-                 <div key={i} className="bg-slate-50 p-6 rounded-[2.5rem] flex flex-col items-center justify-center border border-slate-100 hover:bg-blue-800 hover:text-white transition-all group">
-                    <div className="text-blue-800 group-hover:text-white mb-3">{skill.icon}</div>
+                 <div key={i} className="bg-slate-50 p-6 rounded-[2.5rem] flex flex-col items-center justify-center border border-slate-100 hover:bg-blue-800 hover:text-white transition-all group duration-500 cursor-default">
+                    <div className="text-blue-800 group-hover:text-white mb-3 transition-colors duration-500">{skill.icon}</div>
                     <span className="text-[10px] font-black uppercase tracking-widest">{skill.label}</span>
                  </div>
                ))}
@@ -72,16 +76,13 @@ export default function LanguageSchoolPage() {
                 { icon: <Briefcase size={24}/>, title: "Part-time Job Support", color: "bg-slate-50 text-slate-900" },
                 { icon: <ShieldCheck size={24}/>, title: "100% Visa Guidance", color: "bg-blue-50 text-blue-800" }
               ].map((item, i) => (
-                <div key={i} className={`${item.color} p-8 rounded-[3rem] flex items-center gap-6 transition-transform hover:scale-[1.02] duration-300`}>
+                <div key={i} className={`${item.color} p-8 rounded-[3rem] flex items-center gap-6 transition-all hover:translate-x-2 duration-300 border border-transparent hover:border-blue-200`}>
                    <div className="shrink-0">{item.icon}</div>
                    <h5 className="text-xs font-black uppercase tracking-widest">{item.title}</h5>
                 </div>
               ))}
           </div>
         </div>
-
-        {/* SECTION 3: ENROLLMENT CALENDAR */}
-        
 
         {/* SECTION 4: LIFE & FUTURE */}
         <div className="grid md:grid-cols-2 gap-10 mb-32">
@@ -123,19 +124,6 @@ export default function LanguageSchoolPage() {
             <GraduationCap className="absolute -right-8 -bottom-8 text-white/10 w-48 h-48 group-hover:scale-110 transition-transform duration-700" />
           </div>
         </div>
-
-        {/* SECTION 5: REGIONAL FOOTPRINT */}
-        {/* <div className="text-center mb-10 px-6 py-16 bg-slate-50 rounded-[5rem]">
-           <MapPin className="mx-auto text-blue-800 mb-6" size={32} />
-           <h3 className="text-2xl font-black uppercase text-slate-900 mb-10">Study Locations</h3>
-           <div className="flex flex-wrap justify-center gap-4">
-              {["Tokyo", "Osaka", "Nagoya", "Fukuoka", "Kyoto", "Sapporo"].map((city, i) => (
-                <span key={i} className="px-8 py-4 bg-white rounded-full text-[10px] font-black uppercase tracking-[0.3em] text-slate-600 shadow-sm border border-slate-100">
-                  {city}
-                </span>
-              ))}
-           </div>
-        </div> */}
       </div>
     </div>
   );

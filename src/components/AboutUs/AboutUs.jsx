@@ -1,5 +1,5 @@
 import React from "react";
-import { CheckCircle2, Award, Users, Landmark, Target, Eye } from "lucide-react";
+import { CheckCircle2, Award, Target, Eye } from "lucide-react";
 import aboutImg from "../../images/aboutus.jpg"; 
 
 export default function AboutUsSection() {
@@ -39,7 +39,7 @@ export default function AboutUsSection() {
               </h2>
               <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1]">
                 Bridging Your Path to <br /> 
-                <span className="text-blue-700">Japanese Excellence.</span>
+                <span className="text-blue-800">Japanese Excellence.</span>
               </h3>
             </div>
 
@@ -53,27 +53,27 @@ export default function AboutUsSection() {
               </p>
             </div>
 
-            {/* STATS GRID */}
-           
-
-            {/* MISSION & VISION BOXES */}
+            {/* MISSION & VISION BOXES - UNIFIED HOVER EFFECTS */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
-              <div className="p-8 bg-slate-50 rounded-[2rem] border border-slate-100 space-y-3">
-                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-800">
+              
+              {/* MISSION BOX */}
+              <div className="group p-8 bg-slate-50 rounded-[2rem] border border-slate-100 space-y-3 hover:bg-blue-800 hover:border-blue-800 transition-all duration-500 cursor-default shadow-sm hover:shadow-xl hover:shadow-blue-900/20">
+                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-800 group-hover:bg-white/20 group-hover:text-white transition-colors duration-500">
                   <Target size={20} />
                 </div>
-                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest">Our Mission</h4>
-                <p className="text-xs text-slate-500 leading-relaxed">
+                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest group-hover:text-white transition-colors duration-500">Our Mission</h4>
+                <p className="text-xs text-slate-500 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-500">
                   To provide reliable guidance and quality opportunities for students and professionals in Japan, while ensuring transparency and professionalism throughout the process.
                 </p>
               </div>
 
-              <div className="p-8 bg-blue-800 rounded-[2rem] text-white space-y-3 shadow-xl shadow-blue-900/10">
-                <div className="w-10 h-10 bg-white/10 rounded-xl flex items-center justify-center text-blue-100">
+              {/* VISION BOX */}
+              <div className="group p-8 bg-slate-50 rounded-[2rem] border border-slate-100 space-y-3 hover:bg-blue-800 hover:border-blue-800 transition-all duration-500 cursor-default shadow-sm hover:shadow-xl hover:shadow-blue-900/20">
+                <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-800 group-hover:bg-white/20 group-hover:text-white transition-colors duration-500">
                   <Eye size={20} />
                 </div>
-                <h4 className="text-sm font-black uppercase tracking-widest">Our Vision</h4>
-                <p className="text-xs text-blue-100/80 leading-relaxed">
+                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest group-hover:text-white transition-colors duration-500">Our Vision</h4>
+                <p className="text-xs text-slate-500 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-500">
                   To become the most trusted consultancy in Nepal, focusing on Japanese education and careers, helping individuals achieve academic success and global growth.
                 </p>
               </div>

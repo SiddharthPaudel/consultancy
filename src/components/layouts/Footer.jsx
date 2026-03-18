@@ -37,7 +37,7 @@ export default function Footer() {
               </div>
               <div className="flex flex-col">
                 <span className="text-2xl font-black leading-none text-slate-900 uppercase tracking-tighter">
-                  Namo <span className="text-blue-700">Buddha</span>
+                  Namo <span className="text-blue-800">Buddha</span>
                 </span>
                 <span className="text-[9px] font-bold uppercase tracking-[0.4em] text-slate-400 mt-1">
                   Educational Pvt. Ltd.
