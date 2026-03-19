@@ -1,49 +1,51 @@
 import React from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate
+import { useNavigate } from "react-router-dom";
+import { useTranslation } from "react-i18next"; // Added
 import { ArrowUpRight, BookOpen, GraduationCap, FileCheck, Home, Globe, Languages } from "lucide-react";
 import bgImage from "../../images/service1.png";
 
-const services = [
-  {
-    icon: <Languages size={24} />,
-    title: "Japanese Language Classes",
-    description: "Core training in Speaking, Listening, Reading, and Writing. Build the confidence to adapt easily to life in Japan.",
-    to: "/services/language-schools" // Existing path
-  },
-  {
-    icon: <BookOpen size={24} />,
-    title: "Language Test Prep",
-    description: "Professional preparation for JLPT, NAT-TEST, JLCT, and J-CERT (N5, N4, N3) with proven exam strategies.",
-    to: "/test-preparation/jlpt" // Added path
-  },
-  {
-    icon: <GraduationCap size={24} />,
-    title: "Academic Enrollment",
-    description: "Placement into Language Schools, Colleges, and Universities for Bachelor's, Master's, and Graduate programs.",
-    to: "/study-work/college" // Added path
-  },
-  {
-    icon: <FileCheck size={24} />,
-    title: "Documentation & Visa",
-    description: "End-to-end support for admission processing, documentation guidance, and expert visa application assistance.",
-    to: "/services/documentation" // Path to your new Visa page
-  },
-  {
-    icon: <Home size={24} />,
-    title: "Hostel Arrangement",
-    description: "Safe and reliable accommodation arrangements in Japan to ensure a smooth transition and comfortable stay.",
-    to: "/services/hostel" // Added path
-  },
-  {
-    icon: <Globe size={24} />,
-    title: "Career & Orientation",
-    description: "Professional career counseling and pre-departure orientations to help you choose the right program for your goals.",
-    to: "/orientation" // Added path
-  },
-];
-
 export default function ServicesSection() {
-  const navigate = useNavigate(); // Initialize navigation
+  const { t } = useTranslation(); // Initialize hook
+  const navigate = useNavigate();
+
+  const services = [
+    {
+      icon: <Languages size={24} />,
+      title: t("serv_title_1"),
+      description: t("serv_desc_1"),
+      to: "/services/language-schools"
+    },
+    {
+      icon: <BookOpen size={24} />,
+      title: t("serv_title_2"),
+      description: t("serv_desc_2"),
+      to: "/test-preparation/jlpt"
+    },
+    {
+      icon: <GraduationCap size={24} />,
+      title: t("serv_title_3"),
+      description: t("serv_desc_3"),
+      to: "/study-work/college"
+    },
+    {
+      icon: <FileCheck size={24} />,
+      title: t("serv_title_4"),
+      description: t("serv_desc_4"),
+      to: "/services/documentation"
+    },
+    {
+      icon: <Home size={24} />,
+      title: t("serv_title_5"),
+      description: t("serv_desc_5"),
+      to: "/services/hostel"
+    },
+    {
+      icon: <Globe size={24} />,
+      title: t("serv_title_6"),
+      description: t("serv_desc_6"),
+      to: "/orientation"
+    },
+  ];
 
   return (
     <section id="services" className="bg-white py-24 font-poppins overflow-hidden">
@@ -53,14 +55,19 @@ export default function ServicesSection() {
         <div className="flex flex-col md:flex-row justify-between items-end gap-6 mb-16 border-l-4 border-blue-800 pl-8">
           <div className="max-w-2xl">
             <h2 className="text-blue-800 text-[10px] font-black tracking-[0.5em] uppercase mb-4">
-              Our Expertise
+              {t("serv_sub")}
             </h2>
             <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1] uppercase ">
-              Premium <span className="text-blue-800 underline decoration-blue-100 underline-offset-8">Japan</span> Admission Services
+              {t("serv_title").split("Japan").map((text, i, arr) => (
+                <span key={i}>
+                  {text}
+                  {i !== arr.length - 1 && <span className="text-blue-800 underline decoration-blue-100 underline-offset-8">Japan</span>}
+                </span>
+              ))}
             </h3>
           </div>
           <p className="text-slate-500 text-[11px] font-bold uppercase tracking-widest leading-relaxed max-w-sm">
-            Namo Buddha Consultancy provides end-to-end solutions for students aiming for excellence in the Land of the Rising Sun.
+            {t("serv_tagline")}
           </p>
         </div>
 
@@ -78,10 +85,14 @@ export default function ServicesSection() {
               <div className="space-y-4">
                 <div className="w-16 h-1.5 bg-blue-500 rounded-full" />
                 <h4 className="text-white text-3xl font-black uppercase italic leading-tight">
-                  Start Your <br /> Global Career <br /> With Us.
+                  {/* Using dangerouslySetInnerHTML if you want to keep the <br /> from the translation string, 
+                      otherwise just use simple text mapping */}
+                  {t("serv_img_title").split(" ").map((word, i) => (
+                    <React.Fragment key={i}>{word} <br /></React.Fragment>
+                  ))}
                 </h4>
                 <p className="text-blue-100/70 text-[10px] font-black uppercase tracking-[0.2em]">
-                  Trusted by 1000+ Successful Students
+                  {t("serv_img_tag")}
                 </p>
               </div>
             </div>
@@ -93,7 +104,7 @@ export default function ServicesSection() {
               {services.map((service, index) => (
                 <div 
                   key={index} 
-                  onClick={() => navigate(service.to)} // Entire card is now clickable
+                  onClick={() => navigate(service.to)}
                   className="group flex flex-col items-start cursor-pointer"
                 >
                   <div className="flex justify-between items-center w-full mb-6">
@@ -113,7 +124,7 @@ export default function ServicesSection() {
                   </p>
 
                   <div className="mt-auto flex items-center gap-2 text-blue-800 opacity-0 translate-y-2 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-300">
-                    <span className="text-[9px] font-black uppercase tracking-tighter">Read More</span>
+                    <span className="text-[9px] font-black uppercase tracking-tighter">{t("serv_read_more")}</span>
                     <ArrowUpRight size={14} className="group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
                   </div>
                 </div>

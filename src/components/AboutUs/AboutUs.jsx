@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next"; // Added
 import { CheckCircle2, Award, Target, Eye } from "lucide-react";
 import aboutImg from "../../images/aboutus.jpg"; 
 
 export default function AboutUsSection() {
+  const { t } = useTranslation(); // Initialize hook
+
   return (
     <section id="about" className="bg-white py-24 font-poppins overflow-hidden">
       <div className="max-w-[1440px] mx-auto px-6 md:px-16">
@@ -26,7 +29,9 @@ export default function AboutUsSection() {
               <div className="absolute -right-8 bottom-12 bg-blue-800 p-6 rounded-3xl shadow-xl text-white max-w-[160px] animate-fadeInUp">
                 <Award className="mb-2 text-blue-300" size={32} />
                 <p className="text-2xl font-black leading-none">98%</p>
-                <p className="text-[10px] font-bold uppercase tracking-widest mt-1 text-blue-100 italic">Visa Success</p>
+                <p className="text-[10px] font-bold uppercase tracking-widest mt-1 text-blue-100 italic">
+                  {t("about_badge_text")}
+                </p>
               </div>
             </div>
           </div>
@@ -35,25 +40,21 @@ export default function AboutUsSection() {
           <div className="lg:col-span-7 space-y-10">
             <div className="space-y-4">
               <h2 className="text-blue-800 text-[10px] font-black tracking-[0.4em] uppercase">
-                Trusted Japan Education Partner
+                {t("about_sub")}
               </h2>
               <h3 className="text-4xl md:text-5xl font-black text-slate-900 leading-[1.1]">
-                Bridging Your Path to <br /> 
-                <span className="text-blue-800">Japanese Excellence.</span>
+                {t("about_title_part1")} <br /> 
+                <span className="text-blue-800">{t("about_title_part2")}</span>
               </h3>
             </div>
 
             {/* MAIN DESCRIPTION */}
             <div className="space-y-6 text-slate-600 text-lg leading-relaxed max-w-2xl font-medium">
-              <p>
-                Namo Buddha Consultancy is a trusted education and career consultancy dedicated to helping individuals achieve their dreams of <strong>studying and working in Japan</strong>. We specialize in providing reliable guidance and complete support for students and professionals looking to build a successful future abroad.
-              </p>
-              <p className="text-base text-slate-500">
-                Our team provides expert counseling for enrollment in Japanese language schools, colleges, and universities. From intensive language training and meticulous documentation to visa processing and travel arrangements, we offer reliable assistance at every step of the journey—from your home in Nepal to your new life in Japan.
-              </p>
+              <p>{t("about_desc_1")}</p>
+              <p className="text-base text-slate-500">{t("about_desc_2")}</p>
             </div>
 
-            {/* MISSION & VISION BOXES - UNIFIED HOVER EFFECTS */}
+            {/* MISSION & VISION BOXES */}
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-6">
               
               {/* MISSION BOX */}
@@ -61,9 +62,11 @@ export default function AboutUsSection() {
                 <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-800 group-hover:bg-white/20 group-hover:text-white transition-colors duration-500">
                   <Target size={20} />
                 </div>
-                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest group-hover:text-white transition-colors duration-500">Our Mission</h4>
+                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest group-hover:text-white transition-colors duration-500">
+                  {t("about_mission_title")}
+                </h4>
                 <p className="text-xs text-slate-500 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-500">
-                  To provide reliable guidance and quality opportunities for students and professionals in Japan, while ensuring transparency and professionalism throughout the process.
+                  {t("about_mission_desc")}
                 </p>
               </div>
 
@@ -72,9 +75,11 @@ export default function AboutUsSection() {
                 <div className="w-10 h-10 bg-blue-100 rounded-xl flex items-center justify-center text-blue-800 group-hover:bg-white/20 group-hover:text-white transition-colors duration-500">
                   <Eye size={20} />
                 </div>
-                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest group-hover:text-white transition-colors duration-500">Our Vision</h4>
+                <h4 className="text-sm font-black text-slate-900 uppercase tracking-widest group-hover:text-white transition-colors duration-500">
+                  {t("about_vision_title")}
+                </h4>
                 <p className="text-xs text-slate-500 leading-relaxed group-hover:text-blue-100/90 transition-colors duration-500">
-                  To become the most trusted consultancy in Nepal, focusing on Japanese education and careers, helping individuals achieve academic success and global growth.
+                  {t("about_vision_desc")}
                 </p>
               </div>
             </div>
@@ -82,9 +87,9 @@ export default function AboutUsSection() {
             {/* QUICK CHECKLIST */}
             <div className="flex flex-wrap gap-y-4 gap-x-8 pt-8 border-t border-slate-100">
               {[
-                "Authorized COE Processing", 
-                "Japanese Language Training", 
-                "Transparent Visa Services"
+                t("about_check_1"), 
+                t("about_check_2"), 
+                t("about_check_3")
               ].map((item, i) => (
                 <div key={i} className="flex items-center gap-3">
                   <CheckCircle2 className="text-blue-700 flex-shrink-0" size={18} />

@@ -1,8 +1,11 @@
 import React from "react";
+import { useTranslation } from "react-i18next"; // Added
 import { Phone, Clock, MapPin, MessageSquare, ArrowRight, Compass } from "lucide-react";
 import contactImg from "../../images/service2.png";
 
 export default function ContactUsSection() {
+  const { t } = useTranslation(); // Initialize hook
+
   return (
     <section id="contact" className="bg-white font-poppins py-16 md:py-12">
       <div className="max-w-[1200px] mx-auto px-6">
@@ -10,10 +13,10 @@ export default function ContactUsSection() {
         {/* --- MAIN HEADER --- */}
         <div className="text-center mb-10">
           <span className="text-blue-800 text-[10px] font-black tracking-[0.4em] uppercase mb-3 block">
-            Nepal Office
+            {t("contact_sub")}
           </span>
           <h3 className="text-2xl md:text-3xl font-black text-slate-900 leading-tight uppercase">
-            Namo Buddha <span className="text-blue-800">Tandi Center</span>
+            {t("contact_title_1")} <span className="text-blue-800">{t("contact_title_2")}</span>
           </h3>
           <div className="w-10 h-0.5 bg-blue-800 mx-auto mt-4 rounded-full" />
         </div>
@@ -31,11 +34,10 @@ export default function ContactUsSection() {
               </div>
               <div className="relative z-10">
                 <h4 className="text-white text-base font-black mb-3 uppercase tracking-tight">
-                  Start Your Journey to Japan Today 🇯🇵
+                  {t("contact_cta_title")}
                 </h4>
                 <p className="text-slate-400 text-[10px] font-bold uppercase leading-relaxed tracking-wider max-w-2xl">
-                  If you are planning to study in Japan or explore career opportunities, 
-                  our professional support and personalized guidance help turn your dreams into reality.
+                  {t("contact_cta_desc")}
                 </p>
               </div>
             </div>
@@ -48,7 +50,7 @@ export default function ContactUsSection() {
                 <div className="bg-blue-800 w-10 h-10 rounded-xl flex items-center justify-center text-white mb-4">
                   <Phone size={18} />
                 </div>
-                <h4 className="text-[9px] font-black text-blue-900 mb-2 uppercase tracking-widest">Call Counselors</h4>
+                <h4 className="text-[9px] font-black text-blue-900 mb-2 uppercase tracking-widest">{t("contact_label_phone")}</h4>
                 <div className="space-y-0.5">
                   <p className="text-slate-900 font-black text-lg tracking-tight leading-none">056-494331</p>
                   <p className="text-slate-900 font-black text-lg tracking-tight">9855062451</p>
@@ -61,14 +63,14 @@ export default function ContactUsSection() {
                   <div className="bg-white/10 w-10 h-10 rounded-xl flex items-center justify-center text-white mb-4">
                     <MessageSquare size={18} />
                   </div>
-                  <h4 className="text-[9px] font-black mb-1 uppercase tracking-widest text-blue-100">Online Support</h4>
+                  <h4 className="text-[9px] font-black mb-1 uppercase tracking-widest text-blue-100">{t("contact_label_support")}</h4>
                   <p className="text-[10px] font-black truncate mb-4 opacity-80">namobuddhaeducationpvtltd@gmail.com</p>
                 </div>
                 <a 
                   href="https://wa.me/9779855062451" 
                   className="flex items-center justify-center gap-2 bg-white text-blue-800 py-2.5 rounded-lg font-black text-[9px] uppercase tracking-widest hover:bg-slate-900 hover:text-white transition-all"
                 >
-                  WhatsApp Now <ArrowRight size={12} />
+                  {t("contact_btn_whatsapp")} <ArrowRight size={12} />
                 </a>
               </div>
 
@@ -78,9 +80,9 @@ export default function ContactUsSection() {
                   <MapPin size={20} className="text-blue-800" />
                 </div>
                 <div>
-                  <h4 className="text-[9px] font-black text-slate-900 uppercase tracking-widest mb-1">Location</h4>
+                  <h4 className="text-[9px] font-black text-slate-900 uppercase tracking-widest mb-1">{t("contact_label_loc")}</h4>
                   <p className="text-[11px] text-slate-700 font-black uppercase leading-tight">
-                    Ratnanagar-02, Tandi Chowk,<br/> Chitwan, Nepal
+                    {t("contact_address")}
                   </p>
                 </div>
               </div>
@@ -91,9 +93,9 @@ export default function ContactUsSection() {
                   <Clock size={20} className="text-blue-800" />
                 </div>
                 <div>
-                  <h4 className="text-[9px] font-black text-blue-800 uppercase tracking-widest mb-1">Office Hours</h4>
+                  <h4 className="text-[9px] font-black text-blue-800 uppercase tracking-widest mb-1">{t("contact_label_hours")}</h4>
                   <p className="text-slate-900 font-black text-[11px] uppercase tracking-tight">
-                    Sun — Fri
+                    {t("contact_days")}
                   </p>
                   <p className="text-blue-800 font-black text-[13px] uppercase tracking-tighter mt-1">10:00 AM — 5:00 PM</p>
                 </div>
@@ -102,7 +104,7 @@ export default function ContactUsSection() {
             </div>
           </div>
 
-          {/* RIGHT SIDE (4 Columns) - Shorter Image Height */}
+          {/* RIGHT SIDE (Image) */}
           <div className="lg:col-span-4 flex flex-col lg:justify-start">
             <div className="relative w-full aspect-[4/3] lg:aspect-square rounded-[2rem] overflow-hidden border border-slate-100 shadow-md group">
               <img 
@@ -115,7 +117,7 @@ export default function ContactUsSection() {
               <div className="absolute bottom-6 left-6">
                 <div className="bg-white/95 backdrop-blur-sm px-4 py-1.5 rounded-full flex items-center gap-2 border border-slate-100 shadow-sm">
                   <div className="w-1.5 h-1.5 bg-green-500 rounded-full animate-pulse" />
-                  <span className="text-[8px] font-black text-slate-900 uppercase tracking-widest">Active</span>
+                  <span className="text-[8px] font-black text-slate-900 uppercase tracking-widest">{t("contact_active")}</span>
                 </div>
               </div>
             </div>

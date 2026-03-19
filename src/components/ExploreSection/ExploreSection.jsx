@@ -1,21 +1,23 @@
 import React from "react";
 import { motion } from "framer-motion";
-import { Link } from "react-router-dom"; // Import Link
+import { Link } from "react-router-dom";
+import { useTranslation } from "react-i18next"; // Added
 import { Map, ShieldCheck, FileText, School, ChevronRight } from "lucide-react";
 import exploreImg from "../../images/osakahero.jpg"; 
 
-// 1. Updated action links with correct paths matching your App.jsx
-const actionLinks = [
-  { label: "Japan Language Classes", icon: <Map size={18} />, path: "/services/language-schools" },
-  { label: "Documentation Support", icon: <ShieldCheck size={18} />, path: "/services/documentation" },
-  { label: "SSW Visa Assistance", icon: <FileText size={18} />, path: "/study-work/ssw-vis" },
-  { label: "Universities", icon: <School size={18} />, path: "/study-work/universities" },
-];
-
-// Create a motion-enabled Link component
 const MotionLink = motion(Link);
 
 export default function ExploreActionsSection() {
+  const { t } = useTranslation(); // Initialize hook
+
+  // Moved inside to use t()
+  const actionLinks = [
+    { label: t("explore_link_lang"), icon: <Map size={18} />, path: "/services/language-schools" },
+    { label: t("explore_link_doc"), icon: <ShieldCheck size={18} />, path: "/services/documentation" },
+    { label: t("explore_link_ssw"), icon: <FileText size={18} />, path: "/study-work/ssw-vis" },
+    { label: t("explore_link_uni"), icon: <School size={18} />, path: "/study-work/universities" },
+  ];
+
   return (
     <section className="relative w-full h-[600px] bg-slate-900 font-poppins overflow-hidden">
       
@@ -41,12 +43,12 @@ export default function ExploreActionsSection() {
           <div className="mb-4 flex items-center gap-3">
             <div className="w-8 h-[2px] bg-blue-600" />
             <span className="text-blue-400 text-[10px] font-black uppercase tracking-[0.4em]">
-              Namo Buddha Guidance
+              {t("explore_sub")}
             </span>
           </div>
           <h2 className="text-4xl md:text-5xl font-black text-white leading-tight mb-6 uppercase">
-            Explore Your <br/>
-            <span className="text-blue-800">Japan</span> Life
+            {t("explore_title_1")} <br/>
+            <span className="text-blue-800">Japan</span> {t("explore_title_2")}
           </h2>
         </motion.div>
 
@@ -55,7 +57,7 @@ export default function ExploreActionsSection() {
           <div className="flex flex-nowrap lg:grid lg:grid-cols-4 gap-4 min-w-max lg:min-w-full">
             {actionLinks.map((item, index) => (
               <MotionLink
-                to={item.path} // 2. Added the path here
+                to={item.path}
                 key={index}
                 whileHover={{ y: -5 }}
                 whileTap={{ scale: 0.95 }}

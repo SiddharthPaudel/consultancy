@@ -1,9 +1,12 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { useLocation, useNavigate } from "react-router-dom";
-import { ChevronDown, Menu, X, Send, Phone, MapPin, Globe } from "lucide-react";
+import { useTranslation } from "react-i18next"; // Added
+import { ChevronDown, Menu, X, Phone, MapPin, Globe, Languages } from "lucide-react";
 import buddhaIcon from "../../icons/NAMOBUDDHA.png"; 
+import "../../i18n"; // Make sure to import your i18n config
 
 export default function Header() {
+  const { t, i18n } = useTranslation(); // Initialize Translation
   const [open, setOpen] = useState(false);
   const [activeDropdown, setActiveDropdown] = useState(null);
   const [isScrolled, setIsScrolled] = useState(false);
@@ -11,6 +14,11 @@ export default function Header() {
   const navigate = useNavigate();
   const location = useLocation();
   const isHomePage = location.pathname === "/";
+
+  // Function to toggle language
+  const toggleLanguage = (lng) => {
+    i18n.changeLanguage(lng);
+  };
 
   useEffect(() => {
     const handleScroll = () => setIsScrolled(window.scrollY > 20);
@@ -26,34 +34,33 @@ export default function Header() {
   const shouldShowBg = isScrolled || !isHomePage;
 
   const links = [
-    
     {
-      name: "Study & Work",
+      name: t("nav_study_work"),
       dropdown: [
-        { name: "Schools & Colleges", to: "/study-work/college" },
-        { name: "Universities", to: "/study-work/universities" },
-        { name: "SSW Visa Assistance", to: "/study-work/ssw-visa" },
+        { name: t("drop_schools"), to: "/study-work/college" },
+        { name: t("drop_universities"), to: "/study-work/universities" },
+        { name: t("drop_ssw"), to: "/study-work/ssw-visa" },
       ],
     },
     {
-      name: "Test Prep",
+      name: t("nav_test_prep"),
       dropdown: [
-        { name: "Levels: N3, N4, N5", to: "/test-preparation/jlpt" },
-        { name: "JLPT / NAT", to: "/test-preparation/nat" },
-        { name: "JLCT & J-CERT", to: "/test-preparation/jlcert" },
+        { name: t("drop_levels"), to: "/test-preparation/jlpt" },
+        { name: t("drop_jlpt"), to: "/test-preparation/nat" },
+        { name: t("drop_jlct"), to: "/test-preparation/jlcert" },
       ],
     },
     {
-      name: "Services",
+      name: t("nav_services"),
       dropdown: [
-         { name: "Japanese Language Classes", to: "/services/language-schools" },
-        { name: "Documentation Guidance & Preparation ", to: "/services/documentation" },
-        { name: "Hostel in Japan", to: "/services/hostel" },
-        { name: "International Airfare", to: "/services/airfare" },
+         { name: t("drop_classes"), to: "/services/language-classes" },
+        { name: t("drop_docs"), to: "/services/documentation" },
+        { name: t("drop_hostel"), to: "/services/hostel" },
+        { name: t("drop_airfare"), to: "/services/airfare" },
       ],
     },
-    { name: "Visa Assistance", to: "/visa-assistance" },
-    { name: "About", id: "about" },
+    { name: t("nav_visa"), to: "/visa-assistance" },
+    { name: t("nav_about"), id: "about" },
   ];
 
   const handleClick = (link) => {
@@ -66,10 +73,7 @@ export default function Header() {
       } else {
         const element = document.getElementById(link.id);
         if (element) {
-          window.scrollTo({
-            top: element.offsetTop - 80,
-            behavior: "smooth"
-          });
+          window.scrollTo({ top: element.offsetTop - 80, behavior: "smooth" });
         }
       }
     }
@@ -85,10 +89,20 @@ export default function Header() {
         <div className="hidden lg:block border-b border-white/10 pb-2 mb-2">
           <div className="max-w-[1440px] mx-auto px-12 flex justify-between text-[9px] font-bold text-white/90 uppercase tracking-widest">
             <div className="flex gap-8">
-              <span className="flex items-center gap-2"><Phone size={12} className="text-blue-400"/> 056-494331, 9855062451</span>
-              <span className="flex items-center gap-2"><MapPin size={12} className="text-blue-400"/> Tandi Chowk, Chitwan</span>
+              <span className="flex items-center gap-2"><Phone size={12} className="text-blue-400"/> {t("top_call")}</span>
+              <span className="flex items-center gap-2"><MapPin size={12} className="text-blue-400"/> {t("top_location")}</span>
             </div>
-            <div className="flex items-center gap-2"><Globe size={12} className="text-blue-400"/> Study & Work In Japan</div>
+            
+            {/* Language Switcher in Top Bar */}
+            <div className="flex items-center gap-4">
+              <div className="flex items-center gap-2">
+                <button onClick={() => toggleLanguage('en')} className={`${i18n.language === 'en' ? 'text-blue-400' : 'text-white/60'} hover:text-white transition-colors`}>EN</button>
+                <span className="text-white/20">|</span>
+                <button onClick={() => toggleLanguage('ja')} className={`${i18n.language === 'ja' ? 'text-blue-400' : 'text-white/60'} hover:text-white transition-colors`}>日本語</button>
+              </div>
+              <div className="w-[1px] h-3 bg-white/20 mx-2"></div>
+              <div className="flex items-center gap-2"><Globe size={12} className="text-blue-400"/> {t("top_tagline")}</div>
+            </div>
           </div>
         </div>
       )}
@@ -96,38 +110,21 @@ export default function Header() {
       <div className="max-w-[1440px] mx-auto px-5 lg:px-12">
         <div className="flex items-center justify-between">
           
-          {/* CIRCULAR CLEAR LOGO SECTION */}
           <button 
-  onClick={() => {
-    if (isHomePage) {
-      // If already home, scroll to top smoothly
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    } else {
-      // If on another page, navigate home and scroll to top
-      navigate("/");
-      window.scrollTo(0, 0);
-    }
-  }} 
-  className="flex items-center gap-3 md:gap-5 group z-[110] outline-none"
->
-            {/* Perfectly Circular Container */}
+            onClick={() => isHomePage ? window.scrollTo({ top: 0, behavior: "smooth" }) : navigate("/")} 
+            className="flex items-center gap-3 md:gap-5 group z-[110] outline-none"
+          >
             <div className="relative w-12 h-12 md:w-16 md:h-16 bg-white rounded-full flex items-center justify-center shadow-xl border-[3px] border-blue-50 p-1.5 transition-all duration-300 group-hover:scale-110 group-hover:border-blue-100">
-              <img 
-                src={buddhaIcon} 
-                alt="Namo Buddha Logo" 
-                className="w-full h-full object-contain antialiased"
-                style={{ imageRendering: 'auto' }} 
-              />
+              <img src={buddhaIcon} alt="Logo" className="w-full h-full object-contain antialiased" />
             </div>
 
-            {/* Typography Lockup */}
             <div className="flex flex-col items-start">
               <span className={`text-xl md:text-2xl font-black tracking-tighter leading-none transition-colors duration-300 ${shouldShowBg || open ? "text-slate-900" : "text-white"}`}>
                 NAMO <span className="text-blue-800">BUDDHA</span>
               </span>
               <div className="flex items-center gap-2 mt-1">
                 <span className={`text-[7px] md:text-[9px] font-black uppercase tracking-[0.2em] transition-colors duration-300 ${shouldShowBg || open ? "text-slate-500" : "text-blue-200"}`}>
-                  Educational Consultancy
+                  {t("brand_sub")}
                 </span>
                 <div className={`h-[1px] flex-grow min-w-[20px] transition-all duration-500 ${shouldShowBg || open ? "bg-blue-800" : "bg-white/40"}`}></div>
               </div>
@@ -164,12 +161,20 @@ export default function Header() {
                 )}
               </div>
             ))}
+            
+            {/* Scrolled Language Switcher Pill */}
+            {isScrolled && (
+              <div className="flex items-center gap-2 bg-slate-100 p-1 rounded-full mx-2 border border-slate-200">
+                <button onClick={() => toggleLanguage('en')} className={`text-[8px] font-black px-2 py-1 rounded-full ${i18n.language === 'en' ? 'bg-white shadow-sm text-blue-800' : 'text-slate-400'}`}>EN</button>
+                <button onClick={() => toggleLanguage('ja')} className={`text-[8px] font-black px-2 py-1 rounded-full ${i18n.language === 'ja' ? 'bg-white shadow-sm text-blue-800' : 'text-slate-400'}`}>JA</button>
+              </div>
+            )}
+
             <button onClick={() => {if(!isHomePage) navigate("/"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({behavior:"smooth"}), 100)}} className="ml-4 px-8 py-3 bg-blue-800 text-white text-[10px] font-black uppercase tracking-[0.15em] rounded-full shadow-lg hover:bg-slate-900 transition-all transform hover:-translate-y-0.5 active:scale-95">
-              Apply Now
+              {t("nav_apply")}
             </button>
           </nav>
 
-          {/* MOBILE TOGGLE BUTTON */}
           <button onClick={() => setOpen(!open)} className={`lg:hidden z-[110] p-2.5 rounded-full transition-colors ${shouldShowBg || open ? "text-slate-900 bg-slate-100 shadow-sm" : "text-white bg-white/10"}`}>
             {open ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -179,15 +184,19 @@ export default function Header() {
       {/* MOBILE MENU DRAWER */}
       <div className={`lg:hidden fixed inset-0 bg-white z-[100] transition-transform duration-500 ${open ? "translate-x-0" : "translate-x-full"}`}>
         <div className="flex flex-col h-full pt-32 px-8 pb-10 overflow-y-auto">
+          
+          {/* Mobile Language Selector */}
+          <div className="grid grid-cols-2 gap-3 mb-8">
+            <button onClick={() => toggleLanguage('en')} className={`py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest border ${i18n.language === 'en' ? 'bg-blue-800 text-white border-blue-800 shadow-lg shadow-blue-200' : 'bg-slate-50 text-slate-400 border-slate-100'}`}>English</button>
+            <button onClick={() => toggleLanguage('ja')} className={`py-4 rounded-2xl font-black text-[10px] uppercase tracking-widest border ${i18n.language === 'ja' ? 'bg-blue-800 text-white border-blue-800 shadow-lg shadow-blue-200' : 'bg-slate-50 text-slate-400 border-slate-100'}`}>日本語</button>
+          </div>
+
           <div className="space-y-1">
             {links.map((link) => (
               <div key={link.name} className="border-b border-slate-50 last:border-0">
                 {link.dropdown ? (
                   <>
-                    <button 
-                      onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)}
-                      className="flex justify-between items-center w-full py-5 text-slate-900 font-black text-sm uppercase tracking-widest"
-                    >
+                    <button onClick={() => setActiveDropdown(activeDropdown === link.name ? null : link.name)} className="flex justify-between items-center w-full py-5 text-slate-900 font-black text-sm uppercase tracking-widest">
                       {link.name}
                       <ChevronDown size={18} className={`transition-transform duration-300 ${activeDropdown === link.name ? "rotate-180 text-blue-800" : "opacity-20"}`} />
                     </button>
@@ -212,14 +221,14 @@ export default function Header() {
 
           <div className="mt-auto pt-10 space-y-4">
             <div className="p-7 bg-slate-900 rounded-[2.5rem] text-white shadow-2xl shadow-slate-200">
-              <p className="text-[10px] font-black text-blue-400 uppercase mb-3 tracking-[0.25em]">Direct Consultation</p>
+              <p className="text-[10px] font-black text-blue-400 uppercase mb-3 tracking-[0.25em]">{t("mobile_consult")}</p>
               <div className="space-y-1">
                 <p className="font-black text-xl tracking-tight">056-494331</p>
                 <p className="font-black text-xl tracking-tight text-blue-400">9855062451</p>
               </div>
             </div>
             <button onClick={() => {setOpen(false); if(!isHomePage) navigate("/"); setTimeout(() => document.getElementById("contact")?.scrollIntoView({behavior:"smooth"}), 100)}} className="w-full py-5 bg-blue-800 text-white rounded-[2rem] font-black uppercase text-xs tracking-[0.2em] shadow-xl shadow-blue-900/30 active:scale-95 transition-transform">
-              Free Assessment
+              {t("mobile_assessment")}
             </button>
           </div>
         </div>

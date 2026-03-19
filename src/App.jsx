@@ -28,6 +28,21 @@ import VisaAssistancePage from './components/Visa/Visa';
 import OrientationPage from './components/Orientation/Orientation';
 
 
+// Add this to your main App.js or a Layout component
+// useEffect(() => {
+//   window.googleTranslateElementInit = () => {
+//     new window.google.translate.TranslateElement({
+//       pageLanguage: 'en',
+//       includedLanguages: 'ja,en', // Only show Japanese and English
+//       layout: window.google.translate.TranslateElement.InlineLayout.SIMPLE,
+//       autoDisplay: false,
+//     }, 'google_translate_element');
+//   };
+
+//   const addScript = document.createElement('script');
+//   addScript.src = "//translate.google.com/translate_a/element.js?cb=googleTranslateElementInit";
+//   document.body.appendChild(addScript);
+// }, []);
 
 // 1. CREATE THE SCROLL UTILITY
 function ScrollToTop() {
@@ -71,7 +86,7 @@ function App() {
         <Route path="/study-work/universities" element={<UniversityPage />} />
         <Route path="/study-work/college" element={<EducationPathways />} />
         <Route path="/study-work/ssw-visa" element={<SSWPage />} />
-        <Route path="/services/language-schools" element={<LanguageSchoolPage />} />
+        <Route path="/services/language-classes" element={<LanguageSchoolPage />} />
         <Route path="/services/documentation" element={<DocumentationPage />} />
         <Route path="/services/airfare" element={<AirfarePage />} />
         <Route path="/orientation" element={<OrientationPage />} />
